@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import { contactsRedux } from 'redux/contactsRedux';
+import { authRedux } from 'redux/auth';
 /* auth:
 { user,
   token,
@@ -12,7 +13,7 @@ import { contactsRedux } from 'redux/contactsRedux';
   error }*/
 
 const store = configureStore({
-  reducer: { contacts: contactsRedux },
+  reducer: { auth: authRedux, contacts: contactsRedux },
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger),
   devTools: true,
 });

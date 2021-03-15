@@ -1,8 +1,8 @@
 import { createAction } from '@reduxjs/toolkit';
 
-const RegisterRequest = createAction('auth/RegisterRequest');
-const RegisterSuccess = createAction('auth/RegisterSuccess');
-const RegisterError = createAction('auth/RegisterError');
+const registerRequest = createAction('auth/registerRequest');
+const registerSuccess = createAction('auth/registerSuccess');
+const registerError = createAction('auth/registerError');
 
 const LoginRequest = createAction('auth/LoginRequest');
 const LoginSuccess = createAction('auth/LoginSuccess');
@@ -18,9 +18,9 @@ const GetCurrentUserError = createAction('auth/GetCurrentUserError');
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  RegisterRequest,
-  RegisterSuccess,
-  RegisterError,
+  registerRequest,
+  registerSuccess,
+  registerError,
   LoginRequest,
   LoginSuccess,
   LoginError,

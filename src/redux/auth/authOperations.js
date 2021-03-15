@@ -14,11 +14,11 @@ const token = {};
  * После успешной регистрации добавляем токен в HTTP-заголовок
  */
 const register = credentials => dispatch => {
-  dispatch(authAction.RegisterRequest());
+  dispatch(authAction.registerRequest());
   axios
     .post('/users/signup', credentials)
-    .then(response => dispatch(authAction.RegisterSuccess(response.data)))
-    .catch(error => dispatch(authAction.RegisterError(error)));
+    .then(response => dispatch(authAction.registerSuccess(response.data)))
+    .catch(error => dispatch(authAction.registerError(error)));
 };
 
 /*
