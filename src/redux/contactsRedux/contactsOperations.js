@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { contactsAction } from 'redux/contactsRedux';
 
-axios.defaults.baseURL = 'http://localhost:4090';
 const pathContacts = '/contacts';
 
 const fetchContact = () => dispatch => {

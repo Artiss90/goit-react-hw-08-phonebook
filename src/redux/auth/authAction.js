@@ -4,30 +4,30 @@ const registerRequest = createAction('auth/registerRequest');
 const registerSuccess = createAction('auth/registerSuccess');
 const registerError = createAction('auth/registerError');
 
-const LoginRequest = createAction('auth/LoginRequest');
-const LoginSuccess = createAction('auth/LoginSuccess');
-const LoginError = createAction('auth/LoginError');
+const loginRequest = createAction('auth/loginRequest');
+const loginSuccess = createAction('auth/loginSuccess');
+const loginError = createAction('auth/loginError');
 
-const LogoutRequest = createAction('auth/LogoutRequest');
-const LogoutSuccess = createAction('auth/LogoutSuccess');
-const LogoutError = createAction('auth/LogoutError');
+const logoutRequest = createAction('auth/logoutRequest');
+const logoutSuccess = createAction('auth/logoutSuccess');
+const logoutError = createAction('auth/logoutError');
 
-const GetCurrentUserRequest = createAction('auth/GetCurrentUserRequest');
-const GetCurrentUserSuccess = createAction('auth/GetCurrentUserSuccess');
-const GetCurrentUserError = createAction('auth/GetCurrentUserError');
+const getCurrentUserRequest = createAction('auth/getCurrentUserRequest');
+const getCurrentUserSuccess = createAction('auth/getCurrentUserSuccess');
+const getCurrentUserError = createAction('auth/getCurrentUserError');
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   registerRequest,
   registerSuccess,
   registerError,
-  LoginRequest,
-  LoginSuccess,
-  LoginError,
-  LogoutRequest,
-  LogoutSuccess,
-  LogoutError,
-  GetCurrentUserRequest,
-  GetCurrentUserSuccess,
-  GetCurrentUserError,
+  loginRequest,
+  loginSuccess,
+  loginError,
+  logoutRequest,
+  logoutSuccess,
+  logoutError,
+  getCurrentUserRequest,
+  getCurrentUserSuccess,
+  getCurrentUserError,
 };

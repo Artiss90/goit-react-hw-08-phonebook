@@ -3,11 +3,19 @@ import { authAction } from 'redux/auth';
 
 axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
 
-const token = {};
-/*'Artiss',
-'qqqqqq@gmail.com',
-'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDRmMzhkMDIzOTM5NjAwMTc0YTAzOWEiLCJpYXQiOjE2MTU4MDQ2MjR9.Tgu2Y1M1ZjEoTxugG4FuAyoDUHQeS8PaL6-kn2-ZH78' */
-
+const token = {
+  set(token) {
+    console.log(axios.defaults.headers.common);
+    console.log(axios.defaults.headers.common.Authorization);
+    return (axios.defaults.headers.common.Authorization = `Bearer ${token}`);
+  },
+  unset() {
+    console.log(axios.defaults.headers.common.Authorization);
+    return (axios.defaults.headers.common.Authorization = '');
+  },
+};
+/*'Artiss1990',
+'artiss90@gmail.com'
 /*
  * POST @ /users/signup
  * body: { name, email, password }
@@ -17,7 +25,10 @@ const register = credentials => dispatch => {
   dispatch(authAction.registerRequest());
   axios
     .post('/users/signup', credentials)
-    .then(response => dispatch(authAction.registerSuccess(response.data)))
+    .then(response => {
+      token.set(response.data.token);
+      return dispatch(authAction.registerSuccess(response.data));
+    })
     .catch(error => dispatch(authAction.registerError(error)));
 };
 
@@ -26,14 +37,32 @@ const register = credentials => dispatch => {
  * body: { email, password }
  * После успешного логина добавляем токен в HTTP-заголовок
  */
-const login = {};
+const login = credentials => dispatch => {
+  dispatch(authAction.loginRequest());
+  axios
+    .post('/users/login', credentials)
+    .then(response => {
+      token.set(response.data.token);
+      return dispatch(authAction.loginSuccess(response.data));
+    })
+    .catch(error => dispatch(authAction.loginError(error)));
+};
 
 /*
  * POST @ /users/logout
  * headers: Authorization: Bearer token
  * После успешного логаута, удаляем токен из HTTP-заголовка
  */
-const logout = {};
+const logout = () => dispatch => {
+  dispatch(authAction.logoutRequest());
+  axios
+    .post('/users/logout')
+    .then(_ => {
+      token.unset();
+      return dispatch(authAction.logoutSuccess());
+    })
+    .catch(error => dispatch(authAction.logoutError(error)));
+};
 
 /*
  * GET @ /users/current
@@ -47,4 +76,4 @@ const logout = {};
 const fetchCurrentUser = {};
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { token, register, login, logout, fetchCurrentUser };
+export default { register, login, logout, fetchCurrentUser };
