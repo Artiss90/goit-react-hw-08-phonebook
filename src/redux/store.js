@@ -1,6 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import { contactsRedux } from 'redux/contactsRedux';
+/* auth:
+{ user,
+  token,
+  error },
+  contacts: 
+{ item,
+  filter,
+  loading,
+  error }*/
 
 const store = configureStore({
   reducer: { contacts: contactsRedux },
