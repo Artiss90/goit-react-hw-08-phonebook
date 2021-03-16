@@ -13,7 +13,7 @@ class ContactList extends Component {
   static propTypes = {
     contacts: PropTypes.arrayOf(
       PropTypes.exact({
-        id: PropTypes.number,
+        id: PropTypes.string,
         name: PropTypes.string,
         number: PropTypes.string,
       }),

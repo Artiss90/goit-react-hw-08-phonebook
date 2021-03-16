@@ -5,6 +5,7 @@ axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
 
 const token = {
   set(token) {
+    // ! delete console
     console.log(axios.defaults.headers.common);
     console.log(axios.defaults.headers.common.Authorization);
     return (axios.defaults.headers.common.Authorization = `Bearer ${token}`);
@@ -73,7 +74,22 @@ const logout = () => dispatch => {
  * 2. Если токена нет, выходим не выполняя никаких операций
  * 3. Если токен есть, добавляет его в HTTP-заголовок и выполянем операцию
  */
-const fetchCurrentUser = {};
+const fetchCurrentUser = () => async (dispatch, getState) => {
+  const {
+    auth: { token: persistedToken },
+  } = getState();
+  if (!persistedToken) {
+    return;
+  }
+  token.set(persistedToken);
+  dispatch(authAction.getCurrentUserRequest());
+  try {
+    const response = await axios.get('/users/current');
+    return dispatch(authAction.getCurrentUserSuccess(response.data));
+  } catch (error) {
+    return dispatch(authAction.getCurrentUserError(error));
+  }
+};
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default { register, login, logout, fetchCurrentUser };
