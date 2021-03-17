@@ -7,8 +7,7 @@ import styles from './Components.module.css';
 
 export default function AppBar() {
   const isLoggedIn = useSelector(authSelectors.getIsAuthenticated);
-  // let isLoggedIn = true;
-  // let isLoggedIn = false;
+
   return (
     <header className={styles.header}>
       <Navigation />

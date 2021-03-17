@@ -2,6 +2,9 @@ import axios from 'axios';
 import { authAction } from 'redux/auth';
 
 axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
+/*'Artiss1990',
+'artiss90@gmail.com'
+*/
 
 const token = {
   set(token) {
@@ -15,8 +18,6 @@ const token = {
     return (axios.defaults.headers.common.Authorization = '');
   },
 };
-/*'Artiss1990',
-'artiss90@gmail.com'
 /*
  * POST @ /users/signup
  * body: { name, email, password }
@@ -72,7 +73,7 @@ const logout = () => dispatch => {
  *
  * 1. Забираем токен из стейта через getState()
  * 2. Если токена нет, выходим не выполняя никаких операций
- * 3. Если токен есть, добавляет его в HTTP-заголовок и выполянем операцию
+ * 3. Если токен есть, добавляет его в HTTP-заголовок и выполняем операцию
  */
 const fetchCurrentUser = () => async (dispatch, getState) => {
   const {

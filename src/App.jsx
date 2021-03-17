@@ -4,6 +4,8 @@ import { Route, Switch } from 'react-router';
 import { connect } from 'react-redux';
 import { HomeView, LoginView, ContactsView, RegisterView } from 'views';
 import { authOperations } from 'redux/auth';
+import PrivateRoute from 'Components/PrivateRoute';
+import PublicRoute from 'Components/PublicRoute';
 
 class App extends Component {
   componentDidMount() {
@@ -17,9 +19,21 @@ class App extends Component {
 
         <Switch>
           <Route exact path="/" component={HomeView} />
-          <Route path="/register" component={RegisterView} />
-          <Route path="/login" component={LoginView} />
-          <Route path="/contacts" component={ContactsView} />
+          <PublicRoute
+            path="/register"
+            redirectTo="/contacts"
+            component={RegisterView}
+          />
+          <PublicRoute
+            path="/login"
+            redirectTo="/contacts"
+            component={LoginView}
+          />
+          <PrivateRoute
+            path="/contacts"
+            redirectTo="/login"
+            component={ContactsView}
+          />
         </Switch>
       </>
     );
