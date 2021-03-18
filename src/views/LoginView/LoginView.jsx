@@ -28,11 +28,11 @@ function LoginView() {
 
   return (
     <div>
-      <h1>Страница логина</h1>
+      <h1>Login page</h1>
 
       <form onSubmit={handleSubmit} className={styles.form} autoComplete="off">
         <label className={styles.label}>
-          Почта
+          E-mail
           <input
             type="email"
             name="email"
@@ -42,7 +42,7 @@ function LoginView() {
         </label>
 
         <label className={styles.label}>
-          Пароль
+          Password
           <input
             type="password"
             name="password"
@@ -51,7 +51,7 @@ function LoginView() {
           />
         </label>
 
-        <button type="submit">Войти</button>
+        <button type="submit">Enter</button>
       </form>
     </div>
   );

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { authSelectors } from 'redux/auth';
 
 /*
- * - Если маршрут ограниченный, и пользователь залогинен, рендерит редирект ('/contacts')
+ * - Если маршрут ограниченный (restricted = true), и пользователь залогинен, рендерит редирект ('/contacts')
  * - В противном случае рендерит компонент
  */
 const PublicRoute = ({
@@ -16,7 +16,7 @@ const PublicRoute = ({
   <Route
     {...routeProps}
     render={props =>
-      isAuthenticated && redirectTo ? (
+      isAuthenticated && routeProps.restricted ? (
         <Redirect to={redirectTo} />
       ) : (
         <Component {...props} />
@@ -24,7 +24,6 @@ const PublicRoute = ({
     }
   />
 );
-
 const mapStateToProps = state => ({
   isAuthenticated: authSelectors.getIsAuthenticated(state),
 });

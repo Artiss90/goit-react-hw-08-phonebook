@@ -32,16 +32,16 @@ function RegisterView() {
 
   return (
     <div>
-      <h1>Страница регистрации</h1>
+      <h1>Registration page</h1>
 
       <form onSubmit={handleSubmit} className={styles.form} autoComplete="off">
         <label className={styles.label}>
-          Имя
+          Username
           <input type="text" name="name" value={name} onChange={handleChange} />
         </label>
 
         <label className={styles.label}>
-          Почта
+          E-mail
           <input
             type="email"
             name="email"
@@ -51,16 +51,17 @@ function RegisterView() {
         </label>
 
         <label className={styles.label}>
-          Пароль
+          Password
           <input
             type="password"
             name="password"
+            placeholder="at least 7 characters"
             value={password}
             onChange={handleChange}
           />
         </label>
 
-        <button type="submit">Зарегистрироваться</button>
+        <button type="submit">Register now</button>
       </form>
     </div>
   );

@@ -20,7 +20,9 @@ const tokenReducer = createReducer(null, {
 });
 
 //*абстрагируем вывод ошибки
-const setError = (_, { payload }) => payload.message;
+const setError = (_, { payload }) => {
+  return payload.message;
+};
 
 const errorReducer = createReducer(null, {
   [authAction.registerError]: setError,

@@ -1,6 +1,6 @@
 import AppBar from 'Components/AppBar';
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router';
+import { Switch } from 'react-router';
 import { connect } from 'react-redux';
 import { HomeView, LoginView, ContactsView, RegisterView } from 'views';
 import { authOperations } from 'redux/auth';
@@ -18,14 +18,16 @@ class App extends Component {
         <AppBar />
 
         <Switch>
-          <Route exact path="/" component={HomeView} />
+          <PublicRoute exact path="/" component={HomeView} />
           <PublicRoute
             path="/register"
+            restricted
             redirectTo="/contacts"
             component={RegisterView}
           />
           <PublicRoute
             path="/login"
+            restricted
             redirectTo="/contacts"
             component={LoginView}
           />
