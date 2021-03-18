@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { authSelectors } from 'redux/auth';
 
 /*
- * - Если маршрут ограниченный, и пользователь залогинен, рендерит редирект ('/todos')
+ * - Если маршрут ограниченный, и пользователь залогинен, рендерит редирект ('/contacts')
  * - В противном случае рендерит компонент
  */
 const PublicRoute = ({
@@ -16,7 +16,7 @@ const PublicRoute = ({
   <Route
     {...routeProps}
     render={props =>
-      isAuthenticated && routeProps.restricted ? (
+      isAuthenticated && redirectTo ? (
         <Redirect to={redirectTo} />
       ) : (
         <Component {...props} />
