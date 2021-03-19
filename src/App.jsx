@@ -1,11 +1,27 @@
 import AppBar from 'Components/AppBar';
-import React, { Component } from 'react';
+import React, { Component, lazy, Suspense } from 'react';
 import { Switch } from 'react-router';
 import { connect } from 'react-redux';
-import { HomeView, LoginView, ContactsView, RegisterView } from 'views';
 import { authOperations } from 'redux/auth';
 import PrivateRoute from 'Components/PrivateRoute';
 import PublicRoute from 'Components/PublicRoute';
+
+const LazyHomeView = lazy(() =>
+  import('./views/HomeView/HomeView' /* webpackChunkName "home-page"*/),
+);
+const LazyContactsView = lazy(() =>
+  import(
+    './views/ContactsView/ContactsView' /* webpackChunkName "contact-page"*/
+  ),
+);
+const LazyRegisterView = lazy(() =>
+  import(
+    './views/RegisterView/RegisterView' /* webpackChunkName "register-page"*/
+  ),
+);
+const LazyLoginView = lazy(() =>
+  import('./views/LoginView/LoginView' /* webpackChunkName "login-page"*/),
+);
 
 class App extends Component {
   componentDidMount() {
@@ -16,27 +32,28 @@ class App extends Component {
     return (
       <>
         <AppBar />
-
-        <Switch>
-          <PublicRoute exact path="/" component={HomeView} />
-          <PublicRoute
-            path="/register"
-            restricted
-            redirectTo="/contacts"
-            component={RegisterView}
-          />
-          <PublicRoute
-            path="/login"
-            restricted
-            redirectTo="/contacts"
-            component={LoginView}
-          />
-          <PrivateRoute
-            path="/contacts"
-            redirectTo="/login"
-            component={ContactsView}
-          />
-        </Switch>
+        <Suspense fallback={<p>Loading... Please waite</p>}>
+          <Switch>
+            <PublicRoute exact path="/" component={LazyHomeView} />
+            <PublicRoute
+              path="/register"
+              restricted
+              redirectTo="/contacts"
+              component={LazyRegisterView}
+            />
+            <PublicRoute
+              path="/login"
+              restricted
+              redirectTo="/contacts"
+              component={LazyLoginView}
+            />
+            <PrivateRoute
+              path="/contacts"
+              redirectTo="/login"
+              component={LazyContactsView}
+            />
+          </Switch>
+        </Suspense>
       </>
     );
   }
