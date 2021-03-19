@@ -14,16 +14,6 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 
-/* auth:
-{ user,
-  token,
-  error },
-  contacts: 
-{ item,
-  filter,
-  loading,
-  error }*/
-
 const authPersistConfig = {
   key: 'auth',
   storage,
@@ -46,17 +36,5 @@ const store = configureStore({
 
 const persiststore = persistStore(store);
 
-// const store = configureStore({
-//   reducer: { contacts: persistReducer(persistConfig, contactsRedux) },
-//   middleware: getDefaultMiddleware =>
-// getDefaultMiddleware({
-//   serializableCheck: {
-//     ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-//   },
-// }).concat(logger),
-//   devTools: true,
-// });
-
 // eslint-disable-next-line import/no-anonymous-default-export
 export default { store, persiststore };
-// export default { store };

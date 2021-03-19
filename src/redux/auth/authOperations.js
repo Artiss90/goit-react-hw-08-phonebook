@@ -2,19 +2,12 @@ import axios from 'axios';
 import { authAction } from 'redux/auth';
 
 axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
-/*'Artiss1990',
-'artiss90@gmail.com'
-*/
 
 const token = {
   set(token) {
-    // ! delete console
-    console.log(axios.defaults.headers.common);
-    console.log(axios.defaults.headers.common.Authorization);
     return (axios.defaults.headers.common.Authorization = `Bearer ${token}`);
   },
   unset() {
-    console.log(axios.defaults.headers.common.Authorization);
     return (axios.defaults.headers.common.Authorization = '');
   },
 };
